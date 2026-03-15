@@ -6,9 +6,9 @@
 
 | 設定セット | 内容 |
 |-----------|------|
-| `BasicCloudSkillsJP` | Claude Code スキル設定 |
+| `BasicClaudeSkillsJP` | Claude Code スキル設定 |
 
-### BasicCloudSkillsJP に含まれるファイル
+### BasicClaudeSkillsJP に含まれるファイル
 
 - `.claude/skills/commit/SKILL.md` — コミットスキル定義
 
@@ -17,7 +17,7 @@
 `curl` と `bash` だけでインストールできます：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/install.sh | bash -s -- BasicCloudSkillsJP
+curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/install.sh | bash -s -- BasicClaudeSkillsJP
 ```
 
 展開先やリビジョンを指定する場合：
@@ -28,7 +28,7 @@ bash install.sh <SETTING> [TARGET_DIR] [REF]
 
 | 引数 | 説明 | デフォルト |
 |------|------|-----------|
-| `SETTING` | 設定セット名（例: `BasicCloudSkillsJP`） | 必須 |
+| `SETTING` | 設定セット名（例: `BasicClaudeSkillsJP`） | 必須 |
 | `TARGET_DIR` | 展開先ディレクトリのパス | `.` |
 | `REF` | ブランチ / タグ / コミット SHA | `main` |
 
@@ -36,7 +36,7 @@ bash install.sh <SETTING> [TARGET_DIR] [REF]
 
 ```text
 .
-├── BasicCloudSkillsJP/
+├── BasicClaudeSkillsJP/
 │   └── shared-files/
 │       └── .claude/
 │           └── skills/

@@ -8,14 +8,14 @@ usage() {
 Usage: install.sh <SETTING> [TARGET_DIR] [REF]
 
 Arguments:
-  SETTING     設定セット名（例: BasicCloudSkillsJP）
+  SETTING     設定セット名（例: BasicClaudeSkillsJP）
   TARGET_DIR  展開先ディレクトリ（デフォルト: .）
   REF         ブランチ/タグ/コミット（デフォルト: main）
 
 Example:
-  install.sh BasicCloudSkillsJP
-  install.sh BasicCloudSkillsJP /path/to/project
-  install.sh BasicCloudSkillsJP . v1
+  install.sh BasicClaudeSkillsJP
+  install.sh BasicClaudeSkillsJP /path/to/project
+  install.sh BasicClaudeSkillsJP . v1
 EOF
 }
 
