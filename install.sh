@@ -47,7 +47,10 @@ curl -fsSL --retry 3 --retry-delay 1 --connect-timeout 10 --max-time 120 \
   "https://api.github.com/repos/$REPO/tarball/$REF" | tar xz -C "$TMPDIR"
 
 # tarball 内の唯一のトップレベルディレクトリを特定
-mapfile -t _DIRS < <(find "$TMPDIR" -mindepth 1 -maxdepth 1 -type d)
+_DIRS=()
+while IFS= read -r -d '' _dir; do
+  _DIRS+=("$_dir")
+done < <(find "$TMPDIR" -mindepth 1 -maxdepth 1 -type d -print0)
 if [[ "${#_DIRS[@]}" -ne 1 ]]; then
   echo "Error: Expected 1 top-level directory in tarball, found ${#_DIRS[@]}." >&2
   exit 1
