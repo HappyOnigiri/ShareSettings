@@ -9,11 +9,11 @@
 .DS_Store
 
 # IDE
-.idea/
-.cursor/
-.claude/
-.agent/
-AGENTS.md
+/.idea/
+/.cursor/
+/.claude/
+/.agent/
+/AGENTS.md
 
 # Temporary files
 tmp/
