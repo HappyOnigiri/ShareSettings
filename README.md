@@ -6,36 +6,21 @@
 
 | 設定セット | 内容 | Action パス |
 |-----------|------|------------|
-| `settingA` | ESLint・Prettier 設定 | `org/ShareSettings/settingA@v1` |
-| `settingB` | ビルドスクリプト | `org/ShareSettings/settingB@v1` |
+| `BasicCloudSkillsJP` | Claude Code スキル設定 | `HappyOnigiri/ShareSettings/BasicCloudSkillsJP@v1` |
 
-### settingA に含まれるファイル
+### BasicCloudSkillsJP に含まれるファイル
 
-- `.eslintrc.json` — ESLint 設定
-- `.prettierrc` — Prettier 設定
-
-### settingB に含まれるファイル
-
-- `scripts/build.sh` — ビルドスクリプト
+- `.claude/skills/commit/SKILL.md` — コミットスキル定義
 
 ## 使い方
 
-### settingA を利用する
+### BasicCloudSkillsJP を利用する
 
 ```yaml
-- name: 共通設定ファイルを取得 (settingA)
-  uses: org/ShareSettings/settingA@v1
+- name: 共通設定ファイルを取得 (BasicCloudSkillsJP)
+  uses: HappyOnigiri/ShareSettings/BasicCloudSkillsJP@v1
   with:
     target_dir: '.'   # 省略時のデフォルト値
-```
-
-### settingB を利用する
-
-```yaml
-- name: 共通スクリプトを取得 (settingB)
-  uses: org/ShareSettings/settingB@v1
-  with:
-    target_dir: './scripts'
 ```
 
 ### ワークフロー全体の例
@@ -48,29 +33,13 @@ on:
     branches: [main]
 
 jobs:
-  lint:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: 共通 Lint 設定を取得
-        uses: org/ShareSettings/settingA@v1
-
-      - name: Lint を実行
-        run: npx eslint .
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: 共通ビルドスクリプトを取得
-        uses: org/ShareSettings/settingB@v1
-        with:
-          target_dir: '.'
-
-      - name: ビルドを実行
-        run: bash scripts/build.sh
+      - name: 共通設定ファイルを取得
+        uses: HappyOnigiri/ShareSettings/BasicCloudSkillsJP@v1
 ```
 
 ## inputs
@@ -83,15 +52,12 @@ jobs:
 
 ```text
 .
-├── settingA/
+├── BasicCloudSkillsJP/
 │   ├── action.yml
 │   └── shared-files/
-│       ├── .eslintrc.json
-│       └── .prettierrc
-├── settingB/
-│   ├── action.yml
-│   └── shared-files/
-│       └── scripts/
-│           └── build.sh
+│       └── .claude/
+│           └── skills/
+│               └── commit/
+│                   └── SKILL.md
 └── README.md
 ```
