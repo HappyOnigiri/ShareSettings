@@ -43,7 +43,8 @@ TMPDIR="$(mktemp -d)"
 trap 'rm -rf "$TMPDIR"' EXIT
 
 echo "Downloading $REPO@$REF ..."
-curl -fsSL "https://api.github.com/repos/$REPO/tarball/$REF" | tar xz -C "$TMPDIR"
+curl -fsSL --retry 3 --retry-delay 1 --connect-timeout 10 --max-time 120 \
+  "https://api.github.com/repos/$REPO/tarball/$REF" | tar xz -C "$TMPDIR"
 
 # tarball 内の唯一のトップレベルディレクトリを特定
 EXTRACTED_DIR="$(find "$TMPDIR" -mindepth 1 -maxdepth 1 -type d | head -1)"
