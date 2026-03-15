@@ -64,6 +64,6 @@ if [[ ! -d "$SHARED_FILES_DIR" ]]; then
 fi
 
 mkdir -p "$TARGET"
-cp -a "$SHARED_FILES_DIR/." "$TARGET/"
+cp -R "$SHARED_FILES_DIR/." "$TARGET/"
 
 echo "Done: '$SETTING' installed to '$TARGET'."
