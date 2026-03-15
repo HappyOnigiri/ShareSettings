@@ -6,7 +6,7 @@ new:
 	@[ ! -d "$(NAME)" ] || { echo "Error: '$(NAME)' already exists."; exit 1; }
 	mkdir -p "$(NAME)/shared-files"
 	cp scripts/templates/action.yml "$(NAME)/action.yml"
-	sed -i '' "s/{{NAME}}/$(NAME)/g" "$(NAME)/action.yml"
+	sed "s/{{NAME}}/$(NAME)/g" "$(NAME)/action.yml" > "$(NAME)/action.yml.tmp" && mv "$(NAME)/action.yml.tmp" "$(NAME)/action.yml"
 	touch "$(NAME)/shared-files/.gitkeep"
 	@echo "Created: $(NAME)/"
 	@echo "  $(NAME)/action.yml"
