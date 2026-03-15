@@ -32,6 +32,10 @@ if [[ $# -lt 1 ]]; then
 fi
 
 SETTING="$1"
+if [[ ! "$SETTING" =~ ^[A-Za-z0-9._-]+$ ]]; then
+  echo "Error: SETTING must contain only alphanumeric characters, dots, underscores, or hyphens." >&2
+  exit 1
+fi
 TARGET="${2:-.}"
 REF="${3:-main}"
 
