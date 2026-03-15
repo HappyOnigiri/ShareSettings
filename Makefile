@@ -7,7 +7,8 @@ new:
 	mkdir -p "$(NAME)/shared-files"
 	cp scripts/templates/action.yml "$(NAME)/action.yml"
 	name_escaped=$$(printf '%s' "$(NAME)" | sed 's|[/&]|\\&|g'); \
-	sed "s/{{NAME}}/$$name_escaped/g" "$(NAME)/action.yml" > "$(NAME)/action.yml.tmp" && mv "$(NAME)/action.yml.tmp" "$(NAME)/action.yml"
+	tmpfile=$$(mktemp "$(NAME)/action.yml.XXXXXX"); \
+	sed "s/{{NAME}}/$$name_escaped/g" "$(NAME)/action.yml" > "$$tmpfile" && mv "$$tmpfile" "$(NAME)/action.yml"
 	touch "$(NAME)/shared-files/.gitkeep"
 	@echo "Created: $(NAME)/"
 	@echo "  $(NAME)/action.yml"
