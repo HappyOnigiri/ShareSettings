@@ -1,12 +1,12 @@
 # ShareSettings
 
-複数リポジトリで共通利用するファイルを中央管理し、GitHub Actions の Composite Action として1ステップで取得・展開できるリポジトリです。
+複数リポジトリで共通利用するファイルを中央管理し、コマンド一発で取得・展開できるリポジトリです。
 
 ## 利用可能な設定セット
 
-| 設定セット | 内容 | Action パス |
-|-----------|------|------------|
-| `BasicCloudSkillsJP` | Claude Code スキル設定 | `HappyOnigiri/ShareSettings/BasicCloudSkillsJP@v1` |
+| 設定セット | 内容 |
+|-----------|------|
+| `BasicCloudSkillsJP` | Claude Code スキル設定 |
 
 ### BasicCloudSkillsJP に含まれるファイル
 
@@ -14,50 +14,34 @@
 
 ## 使い方
 
-### BasicCloudSkillsJP を利用する
+`curl` と `bash` だけでインストールできます：
 
-```yaml
-- name: 共通設定ファイルを取得 (BasicCloudSkillsJP)
-  uses: HappyOnigiri/ShareSettings/BasicCloudSkillsJP@v1
-  with:
-    target_dir: '.'   # 省略時のデフォルト値
+```bash
+curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/install.sh | bash -s -- BasicCloudSkillsJP
 ```
 
-### ワークフロー全体の例
+展開先やリビジョンを指定する場合：
 
-```yaml
-name: CI
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: 共通設定ファイルを取得
-        uses: HappyOnigiri/ShareSettings/BasicCloudSkillsJP@v1
+```bash
+bash install.sh <SETTING> [TARGET_DIR] [REF]
 ```
 
-## inputs
-
-| 入力値 | 説明 | デフォルト |
-|--------|------|-----------|
-| `target_dir` | 展開先ディレクトリのパス | `.` |
+| 引数 | 説明 | デフォルト |
+|------|------|-----------|
+| `SETTING` | 設定セット名（例: `BasicCloudSkillsJP`） | 必須 |
+| `TARGET_DIR` | 展開先ディレクトリのパス | `.` |
+| `REF` | ブランチ / タグ / コミット SHA | `main` |
 
 ## ディレクトリ構成
 
 ```text
 .
 ├── BasicCloudSkillsJP/
-│   ├── action.yml
 │   └── shared-files/
 │       └── .claude/
 │           └── skills/
 │               └── commit/
 │                   └── SKILL.md
+├── install.sh
 └── README.md
 ```
