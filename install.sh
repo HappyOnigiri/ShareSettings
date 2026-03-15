@@ -47,7 +47,12 @@ curl -fsSL --retry 3 --retry-delay 1 --connect-timeout 10 --max-time 120 \
   "https://api.github.com/repos/$REPO/tarball/$REF" | tar xz -C "$TMPDIR"
 
 # tarball 内の唯一のトップレベルディレクトリを特定
-EXTRACTED_DIR="$(find "$TMPDIR" -mindepth 1 -maxdepth 1 -type d | head -1)"
+mapfile -t _DIRS < <(find "$TMPDIR" -mindepth 1 -maxdepth 1 -type d)
+if [[ "${#_DIRS[@]}" -ne 1 ]]; then
+  echo "Error: Expected 1 top-level directory in tarball, found ${#_DIRS[@]}." >&2
+  exit 1
+fi
+EXTRACTED_DIR="${_DIRS[0]}"
 
 SHARED_FILES_DIR="$EXTRACTED_DIR/$SETTING/shared-files"
 if [[ ! -d "$SHARED_FILES_DIR" ]]; then
