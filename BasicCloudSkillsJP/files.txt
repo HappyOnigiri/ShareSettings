@@ -1,0 +1,3 @@
+# BasicCloudSkillsJP インストール対象ファイル
+# shared-files/ からの相対パスを1行1ファイルで記載
+.claude/skills/commit/SKILL.md
