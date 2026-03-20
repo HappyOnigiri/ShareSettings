@@ -11,14 +11,14 @@
 
 ## 使い方
 
-各設定セットの `run.sh` を `curl | sh` でワンライナー実行できます：
+各設定セットの `run.sh` を `curl | bash` でワンライナー実行できます：
 
 ### InstallBasicClaudeSkillsJP
 
 Claude Code スキルファイル（`.claude/skills/`）を配布します。
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/InstallBasicClaudeSkillsJP/run.sh | sh
+curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/InstallBasicClaudeSkillsJP/run.sh | bash
 ```
 
 含まれるファイル：
@@ -29,7 +29,7 @@ curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/Ins
 cwd の `.ai/` を各 AI ツールのディレクトリへ同期します。
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/SyncRule/run.sh | sh
+curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/SyncRule/run.sh | bash
 ```
 
 同期先：`.claude/skills/`、`.cursor/skills/`、`.agent/skills/`
