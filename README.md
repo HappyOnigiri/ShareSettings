@@ -6,42 +6,52 @@
 
 | 設定セット | 内容 |
 |-----------|------|
-| `BasicClaudeSkillsJP` | Claude Code スキル設定 |
-
-### BasicClaudeSkillsJP に含まれるファイル
-
-- `.claude/skills/commit/SKILL.md` — コミットスキル定義
+| `InstallBasicClaudeSkillsJP` | Claude Code スキル設定 |
+| `SyncRule` | `.ai/` を各ツールディレクトリへ同期 |
 
 ## 使い方
 
-`curl` と `bash` だけでインストールできます：
+各設定セットの `run.sh` を `curl | sh` でワンライナー実行できます：
+
+### InstallBasicClaudeSkillsJP
+
+Claude Code スキルファイル（`.claude/skills/`）を配布します。
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/install.sh | bash -s -- BasicClaudeSkillsJP
+curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/InstallBasicClaudeSkillsJP/run.sh | sh
 ```
 
-展開先やリビジョンを指定する場合：
+含まれるファイル：
+- `.claude/skills/commit/SKILL.md` — コミットスキル定義
+
+### SyncRule
+
+cwd の `.ai/` を各 AI ツールのディレクトリへ同期します。
 
 ```bash
-bash install.sh <SETTING> [TARGET_DIR] [REF]
+curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/SyncRule/run.sh | sh
 ```
 
-| 引数 | 説明 | デフォルト |
-|------|------|-----------|
-| `SETTING` | 設定セット名（例: `BasicClaudeSkillsJP`） | 必須 |
-| `TARGET_DIR` | 展開先ディレクトリのパス | `.` |
-| `REF` | ブランチ / タグ / コミット SHA | `main` |
+同期先：`.claude/skills/`、`.cursor/skills/`、`.agent/skills/`
 
 ## ディレクトリ構成
 
 ```text
 .
-├── BasicClaudeSkillsJP/
+├── InstallBasicClaudeSkillsJP/
+│   ├── run.sh
 │   └── shared-files/
 │       └── .claude/
 │           └── skills/
 │               └── commit/
 │                   └── SKILL.md
-├── install.sh
+├── SyncRule/
+│   └── run.sh
 └── README.md
+```
+
+## 新しい設定セットの追加
+
+```bash
+make new NAME=<setting-name>
 ```
