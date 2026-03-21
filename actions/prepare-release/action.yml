@@ -53,6 +53,16 @@ runs:
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+    - name: Validate version-bump-type
+      shell: bash
+      env:
+        BUMP_TYPE: ${{ inputs.version-bump-type }}
+      run: |
+        case "$BUMP_TYPE" in
+          npm|python|none) ;;
+          *) echo "::error::version-bump-type must be npm, python, or none (got: ${BUMP_TYPE})"; exit 1 ;;
+        esac
+
     - name: Version bump (npm)
       if: inputs.version-bump-type == 'npm'
       shell: bash
