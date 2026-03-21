@@ -70,7 +70,8 @@ runs:
         VERSION: ${{ inputs.version }}
       run: |
         npm version "$VERSION" --no-git-tag-version
-        git add package.json package-lock.json
+        git add package.json
+        if [ -f package-lock.json ]; then git add package-lock.json; fi
         git commit -m "release: v${VERSION}"
 
     - name: Version bump (python)
