@@ -23,6 +23,16 @@ runs:
         token: ${{ inputs.github-token }}
         fetch-tags: true
 
+    - name: Validate branch format
+      shell: bash
+      env:
+        BRANCH: ${{ inputs.branch }}
+      run: |
+        if ! echo "$BRANCH" | grep -qE '^release/v[0-9]+\.[0-9]+\.[0-9]+$'; then
+          echo "::error::branch must match release/vX.Y.Z format (got: ${BRANCH})"
+          exit 1
+        fi
+
     - name: Extract version from branch name
       id: version
       shell: bash
