@@ -122,7 +122,7 @@ runs:
         configurationJson: |
           {
             "categories": [
-              { "title": "## Features", "labels": ["feature"] },
+              { "title": "## Features", "labels": ["feat"] },
               { "title": "## Bug Fixes", "labels": ["fix"] },
               { "title": "## Refactoring", "labels": ["refactor"] },
               { "title": "## Maintenance", "labels": ["chore", "ci", "docs"] }
