@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# --- AGENTS.md ---
+# --- AGENTS.md / CLAUDE.md ---
 if [ -f .ai/AGENTS.md ]; then
-  if ! cmp -s .ai/AGENTS.md AGENTS.md 2>/dev/null; then
-    cp .ai/AGENTS.md AGENTS.md
-    echo "AGENTS.md updated"
-  fi
+  for dest in AGENTS.md CLAUDE.md; do
+    if ! cmp -s .ai/AGENTS.md "$dest" 2>/dev/null; then
+      cp .ai/AGENTS.md "$dest"
+      echo "$dest updated"
+    fi
+  done
 fi
 
 # --- skills ---
