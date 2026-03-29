@@ -7,7 +7,7 @@
 | 設定セット | 内容 |
 |-----------|------|
 | `InstallBasicClaudeSkillsJP` | Claude Code スキル設定 |
-| `SyncRule` | `.ai/skills` を各ツール `skills/` へ同期し `AGENTS.md` / `CLAUDE.md` を更新 |
+| `SyncRule` | `.ai/skills` を各ツール `skills/` へ同期し `AGENTS.md` / `CLAUDE.md` / ignore ファイルを更新 |
 
 ## 使い方
 
@@ -26,13 +26,15 @@ curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/Ins
 
 ### SyncRule
 
-cwd の `.ai/skills/` を各 AI ツールの `skills/` ディレクトリへ同期し、`.ai/AGENTS.md` を `AGENTS.md` と `CLAUDE.md` として配置します。
+cwd の `.ai/skills/` を各 AI ツールの `skills/` ディレクトリへ同期し、`.ai/AGENTS.md` を `AGENTS.md` と `CLAUDE.md` として配置し、`.ai/ignore` を各ツールの ignore ファイルへ同期します。
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/SyncRule/run.sh | bash
 ```
 
 同期先：`.claude/skills/`、`.cursor/skills/`、`.agent/skills/`
+
+ignore 同期先：`.claudeignore`、`.cursorignore`
 
 ## ディレクトリ構成
 

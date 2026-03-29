@@ -24,3 +24,13 @@ if [ -d "$SKILLS_SRC" ]; then
     echo "$dest synced"
   done
 fi
+
+# --- ignore ---
+if [ -f .ai/ignore ]; then
+  for dest in .claudeignore .cursorignore; do
+    if ! cmp -s .ai/ignore "$dest" 2>/dev/null; then
+      cp .ai/ignore "$dest"
+      echo "$dest updated"
+    fi
+  done
+fi
