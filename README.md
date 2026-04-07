@@ -26,7 +26,7 @@ curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/Ins
 
 ### SyncRule
 
-cwd の `.ai/skills/` を各 AI ツールの `skills/` ディレクトリへ同期し、`.ai/AGENTS.md` を `AGENTS.md` と `CLAUDE.md` として配置し、`.ai/ignore` を各ツールの ignore ファイルへ同期します。
+cwd の `.ai/skills/` を各 AI ツールの `skills/` ディレクトリへ同期し、`.ai/AGENTS.md` を `AGENTS.md` へ同期し `CLAUDE.md` には `@AGENTS.md` の参照のみを書き込み、`.ai/ignore` を各ツールの ignore ファイルへ同期します。
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/HappyOnigiri/ShareSettings/main/SyncRule/run.sh | bash
