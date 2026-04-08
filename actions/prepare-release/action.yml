@@ -118,6 +118,10 @@ runs:
         fi
         # Replace only top-level `version = "..."` lines (^version = ) to avoid
         # touching dependency version specifiers inside the file.
+        if [ "$(grep -cE '^version = "[^"]+"' "$PYPROJECT_PATH")" -ne 1 ]; then
+          echo "::error::Expected exactly one version field in ${PYPROJECT_PATH}"
+          exit 1
+        fi
         sed -i -E 's/^version = "[^"]+"/version = "'"${VERSION}"'"/' "$PYPROJECT_PATH"
         if ! grep -q "^version = \"${VERSION}\"" "$PYPROJECT_PATH"; then
           echo "::error::Failed to update version in ${PYPROJECT_PATH}"
